@@ -12,8 +12,15 @@ use Illuminate\Support\Facades\Input;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
+use App\Models\WilayahModel;
+
 class CRabbit extends Controller
 {
+	protected $wilayah;
+
+	public function __construct(WilayahModel $wilayah){
+		$this->wilayah = $wilayah;
+	}
 	
     /*function index(){
 	  $url = '167.205.7.229';
@@ -102,10 +109,18 @@ class CRabbit extends Controller
 	
 	
 	function getFormView(){
-			$nama = "Testing Laravel";
-			return view("formsms");
-			//return view("formsms", compact('nama'));
-		}
+		$nama = "Testing Laravel";
+
+		$data['provinces'] = $this->wilayah->where('tingkat',1)->get();
+		return view("formsms",$data);
+		//return view("formsms", compact('nama'));
+	}
+
+	function wilayahChild($id){
+		$child = $this->wilayah->find($id)->child;
+
+		return json_encode($child);
+	}
 		
 	function postForm(){
 	  $url = '167.205.7.229';

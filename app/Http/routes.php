@@ -14,10 +14,11 @@
 Route::get('/', 'CRabbit@index');
 Route::get('/receive', 'CRabbit@receive');
 
-
-Route::get('/formsms', 'Crabbit@getFormView');
-Route::post('/send1', ['as'=>'Send','uses'=>'Crabbit@postForm']);
+Route::get('/formsms', 'CRabbit@getFormView');
+Route::post('/send1', ['as'=>'Send','uses'=>'CRabbit@postForm']);
 
 Route::get('/index', 'OSMController@getIndexView');
 Route::post('/indexPost', ['as'=>'postIndex' ,'uses'=>'OSMController@postAjax']);
 
+/* ----- ajax -----*/
+Route::get('/getChildWilayah/{id}', 'CRabbit@wilayahChild');

@@ -2,7 +2,7 @@
 	<!---<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>-->
 	<link rel="stylesheet" type="text/css" href={!! asset('css/stylehome.css') !!}>
 	<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>
-
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<!--
 <style>	
 ul {
@@ -59,19 +59,30 @@ li a:hover {
 					<input type="text" name="tps" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="ID TPS" id="name"/><br>
 				</p>
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"><option value="l">Provinsi</option><option value="p">perempuan</option></select><br>
+					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input provinsi">
+						<option value=""> -Provinsi- </option>
+						@foreach($provinces as $province)
+						<option value="{{ $province->wilayah_id }}">{{ $province->nama }}</option>
+						@endforeach
+					</select>
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"><option value="l">Kabupaten/Kota</option><option value="p">perempuan</option></select><br>
+					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kabupaten">
+						<option value=""> -Kabupaten/Kota- </option>
+					</select>
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"><option value="l">Kecamatan</option><option value="p">perempuan</option></select><br>
+					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kecamatan">
+						<option value=""> -Kecamatan- </option>
+					</select>
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"><option value="l">Kelurahan/Desa</option><option value="p">perempuan</option></select><br>
+					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input desa">
+						<option value=""> -Kelurahan/Desa- </option>
+					</select>
 				</p>
 				
 				
@@ -81,11 +92,11 @@ li a:hover {
 				<p class="name">
 					<input type="text" name="kd1" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 1" id="name"/><br>
 				</p>
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				
 				<p class="name">
 					<input type="text" name="kd2" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 2" id="name"/><br>
 				</p>
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				
 				<p class="name">
 					<input type="text" name="kd3" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 3" id="name"/><br>
 				</p>
@@ -99,6 +110,58 @@ li a:hover {
     </form>
 </div>
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.provinsi').change(function(){
+			var id = $(this).val();
+			var tingkat = '1';
+			var to = '.kabupaten';
+
+			if(id)
+				getChild(id,tingkat,to);
+			else
+				$(to).append('<option value="">-Kelurahan/Desa-</option>');
+		});
+		$('.kabupaten').change(function(){
+			var id = $(this).val();
+			var tingkat = '2';
+			var to = '.kecamatan';
+
+			if(id)
+				getChild(id,tingkat,to);
+			else
+				$(to).append('<option value="">-Kelurahan/Desa-</option>');
+		});
+		$('.kecamatan').change(function(){
+			alert('kecamatan');
+		});
+
+		function getChild(id,tingkat,to){
+			$.ajax({
+				url : '{{ url("getChildWilayah") }}/'+id,
+				type : 'GET',
+				success : function(data){
+					var result = getOption(JSON.parse(data),tingkat);
+					$(to).html('');
+					$(to).append(result);
+					$(to).change();
+				},
+				error : function(a,b,c){}
+			})
+		}
+
+		function getOption(data,tingkat){
+			var txt = '<option value="">'+(tingkat==2?'-Kabupaten-':(tingkat==3?'-Kecamatan-':'-Kelurahan/Desa-'))+'</option>';
+			
+			$.each(data,function(i,v){
+				txt += '<option value="'+v.wilayah_id+'">'+v.nama+'</option>';
+			});
+
+			return txt;
+		}
+	});
+</script>
 
 </html>
 
