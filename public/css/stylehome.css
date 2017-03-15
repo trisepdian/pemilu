@@ -5,8 +5,11 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 
  
   background-size: cover;
-  height:100%;
-}
+  position: 100%;
+ 
+	min-width: 100%;
+	min-height:100%;
+  }
 
 #feedback-page{
 	text-align:center;
@@ -28,8 +31,8 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 	float: left;
 	left: 50%;
 	position: absolute;
-  margin-top:10px;
-	margin-left: -260px;
+   margin-top:10px;
+	margin-left: -600px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
 }

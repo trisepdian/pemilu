@@ -34,15 +34,15 @@ li a:hover {
 	
 	
 
-<!--<body style='background-image:url({{asset("image/Pilkada-Serentak.jpg")}}); background-size:1400px 700px;'>-->
+<body style='background-image:url({{asset("image/bg.jpg")}}); background-size:1350px 1000px;   height:150%;'>
 
 <body style='background-color: #fff;'>
 
 <nav>    
 <ul>    
 	<li><a href="home.html">Home</a></li>
-	<li><a href="about.html">Presentase</a></li> 
-	<li><a href="help.html">Maps</a></li>
+	<li><a href="{{ url('formsms') }}">Presentase</a></li> 
+	<li><a href="{{ url('../resources/views/welcome.blade.php') }}" >Maps</a></li>
 </ul> 
 </nav>
 
@@ -51,15 +51,15 @@ li a:hover {
 
 
 <!--<div id="title"> PEMILU 2017</div>-->	
-<div id="form-main">
+<div id="form-main" >
   <div id="form-div">
 	<form class="form" id="form1" method="post" action="{{URL::route('Send')}}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<p class="name">
-					<input type="text" name="tps" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="ID TPS" id="name"/><br>
+					<input type="text" name="tps" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="ID TPS" id="name" required/><br>
 				</p>
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input provinsi">
+					<select name="provinsi" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input provinsi">
 						<option value=""> -Provinsi- </option>
 						@foreach($provinces as $province)
 						<option value="{{ $province->wilayah_id }}">{{ $province->nama }}</option>
@@ -68,19 +68,19 @@ li a:hover {
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kabupaten">
+					<select name="kabupaten" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kabupaten">
 						<option value=""> -Kabupaten/Kota- </option>
 					</select>
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kecamatan">
+					<select name="kecamatan" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input kecamatan">
 						<option value=""> -Kecamatan- </option>
 					</select>
 				</p>
 				
 				<p class="name">
-					<select name="kelamin" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input desa">
+					<select name="desa" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input desa">
 						<option value=""> -Kelurahan/Desa- </option>
 					</select>
 				</p>
@@ -90,15 +90,15 @@ li a:hover {
 
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<p class="name">
-					<input type="text" name="kd1" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 1" id="name"/><br>
+					<input type="text" name="kd1" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Polling kandidat 1" id="name"/><br>
 				</p>
 				
 				<p class="name">
-					<input type="text" name="kd2" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 2" id="name"/><br>
+					<input type="text" name="kd2" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Polling kandidat 2" id="name"/><br>
 				</p>
 				
 				<p class="name">
-					<input type="text" name="kd3" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Kandidat 3" id="name"/><br>
+					<input type="text" name="kd3" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Polling kandidat 3" id="name"/><br>
 				</p>
 				<!--<p class="text">
 					<textarea name="message" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Message"></textarea><br><br>
@@ -109,7 +109,18 @@ li a:hover {
       </div>
     </form>
 </div>
+
+
+
+<h2 style="padding-left: 650px">KANDIDAT</h2>
+
+@foreach ($kandidat as $kandidat)
+   <p style="padding-left: 650px">{{ $kandidat->nama }}</p>
+   <img style="padding-left: 650px" src="{{ assets('image/.$kandidat->img') }}" >
+  @endforeach
+
 </body>
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -134,9 +145,16 @@ li a:hover {
 				$(to).append('<option value="">-Kelurahan/Desa-</option>');
 		});
 		$('.kecamatan').change(function(){
-			alert('kecamatan');
-		});
+			var id = $(this).val();
+			var tingkat = '3';
+			var to = '.desa';
 
+			if(id)
+				getChild(id,tingkat,to);
+			else
+				$(to).append('<option value="">-Kelurahan/Desa-</option>');
+		});
+	
 		function getChild(id,tingkat,to){
 			$.ajax({
 				url : '{{ url("getChildWilayah") }}/'+id,
@@ -152,7 +170,7 @@ li a:hover {
 		}
 
 		function getOption(data,tingkat){
-			var txt = '<option value="">'+(tingkat==2?'-Kabupaten-':(tingkat==3?'-Kecamatan-':'-Kelurahan/Desa-'))+'</option>';
+			var txt = '<option value="">'+(tingkat==1?'-Kabupaten/Kota-':(tingkat==2?'-Kecamatan-':'-Kelurahan/Desa-'))+'</option>';
 			
 			$.each(data,function(i,v){
 				txt += '<option value="'+v.wilayah_id+'">'+v.nama+'</option>';
@@ -162,6 +180,8 @@ li a:hover {
 		}
 	});
 </script>
+
+
 
 </html>
 

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class WilayahModel extends Model
 {
-    protected $table      = 'wilayah';
+	protected $table      = 'wilayah';
     protected $primaryKey = 'wilayah_id';
     protected $guarded    = ['wilayah_id'];
-
+		
     public function parent()
     {
         return $this->belongsTo('App\Models\WilayahModel','parent','wilayah_id');
@@ -19,4 +19,7 @@ class WilayahModel extends Model
     {
         return $this->hasMany('App\Models\WilayahModel','parent','wilayah_id');
     }
+	
 }
+
+

@@ -22,3 +22,6 @@ Route::post('/indexPost', ['as'=>'postIndex' ,'uses'=>'OSMController@postAjax'])
 
 /* ----- ajax -----*/
 Route::get('/getChildWilayah/{id}', 'CRabbit@wilayahChild');
+
+
+

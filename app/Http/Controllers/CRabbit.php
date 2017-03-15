@@ -14,6 +14,11 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 use App\Models\WilayahModel;
 
+
+
+use App\kandidat;
+use App\Http\Controllers\Controller;
+
 class CRabbit extends Controller
 {
 	protected $wilayah;
@@ -22,6 +27,9 @@ class CRabbit extends Controller
 		$this->wilayah = $wilayah;
 	}
 	
+
+
+   
     /*function index(){
 	  $url = '167.205.7.229';
 	  $port = 5672;
@@ -110,10 +118,15 @@ class CRabbit extends Controller
 	
 	function getFormView(){
 		$nama = "Testing Laravel";
+		 
+		 $kandidat = kandidat::all();
+		 //return view('formsms', ['kandidat' => $kandidat]); 
 
-		$data['provinces'] = $this->wilayah->where('tingkat',1)->get();
-		return view("formsms",$data);
-		//return view("formsms", compact('nama'));
+		$provinces = $this->wilayah->where('tingkat',1)->get();
+//		$data['provinces'] = $this->wilayah->where('tingkat',1)->get();
+
+		//return view("formsms",$data);
+		return view("formsms", compact('provinces', 'kandidat'));
 	}
 
 	function wilayahChild($id){
@@ -144,6 +157,10 @@ class CRabbit extends Controller
 								
 		//sms
 		$tps = Input::get('tps'); 
+		$provinsi = Input::get('provinsi');
+		$kabupaten = Input::get('kabupaten');
+		$kecamatan = Input::get('kecamatan');
+		$desa = Input::get('desa');
 		$kd1 = Input::get('kd1');
 		$kd2 = Input::get('kd2');
 		$kd3 = Input::get('kd3');
@@ -157,6 +174,7 @@ class CRabbit extends Controller
 							 );
 
 	  echo "[x] Sent $nama \n";
+	//	echo "<script>alert(sent $nama);window.history.go(-1);</script>";
 //-------------------------------------------------------------------------------------------------------------------------------------------------------	  
 	  //sms
 	  
@@ -166,7 +184,7 @@ class CRabbit extends Controller
 		//mysql_connect("localhost", "root", "");
 		//mysql_select_db("test");
 
-		$query = DB::insert('insert into tps (ID_DataTPS, Kan1, Kan2, Kan3) values (?, ?, ?, ?)', [$tps, $kd1, $kd2, $kd3]);
+		$query = DB::insert('insert into polling (ID_DataTPS, provinsi, kabupaten, kecamatan, desa, Kan1, Kan2, Kan3) values (?, ?, ?, ?, ?, ?, ?, ?)', [$tps, $provinsi, $kabupaten, $kecamatan, $desa, $kd1, $kd2, $kd3]);
 		//$query="INSERT INTO message (tps, message) VALUES ('$_POST[tps]','$_POST[message]')";
 
 			if($query){
@@ -184,14 +202,8 @@ class CRabbit extends Controller
       $channel->close();
       $connection->close();
 
-    }
-	
-	
-	
-	
-	
-	
-	
-	
-	
+    }	
 }
+
+
+?>

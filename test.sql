@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2017 at 04:18 PM
+-- Generation Time: Feb 27, 2017 at 08:51 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -28,8 +28,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `kandidat` (
   `id_kandidat` int(11) NOT NULL,
-  `nama` int(11) NOT NULL
+  `nama` varchar(150) NOT NULL,
+  `img` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kandidat`
+--
+
+INSERT INTO `kandidat` (`id_kandidat`, `nama`, `img`) VALUES
+(1, 'Agus Harimurti Yudhoyono - Sylviana Murni', 'kan1.jpg'),
+(2, 'Basuki Tjahaja Purnama - Djarot Saiful Hidayat', 'kan2.jpg'),
+(3, 'Anies Rasyid Baswedan - Sandiaga Salahuddin Uno', 'kan3.jpg');
 
 -- --------------------------------------------------------
 
@@ -49,39 +59,58 @@ CREATE TABLE `periode` (
 --
 
 CREATE TABLE `polling` (
-  `id_polling` int(11) NOT NULL,
-  `kandidat_1` int(11) NOT NULL,
-  `kandidat_2` int(11) NOT NULL,
-  `kandidat_3` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tps`
---
-
-CREATE TABLE `tps` (
   `ID` int(100) NOT NULL,
   `ID_DataTPS` int(100) NOT NULL,
+  `provinsi` varchar(150) NOT NULL,
+  `kabupaten` varchar(150) NOT NULL,
+  `kecamatan` varchar(150) NOT NULL,
+  `desa` varchar(150) NOT NULL,
   `Kan1` int(100) NOT NULL,
   `Kan2` int(100) NOT NULL,
   `Kan3` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tps`
+-- Dumping data for table `polling`
 --
 
-INSERT INTO `tps` (`ID`, `ID_DataTPS`, `Kan1`, `Kan2`, `Kan3`) VALUES
-(1, 1234, 30, 20, 40),
-(2, 2346, 10, 20, 30),
-(3, 6780, 20, 20, 20),
-(4, 3456, 30, 30, 30),
-(5, 8900, 10, 20, 30),
-(6, 8900, 10, 20, 30),
-(7, 456, 10, 20, 30),
-(8, 4509, 20, 30, 40);
+INSERT INTO `polling` (`ID`, `ID_DataTPS`, `provinsi`, `kabupaten`, `kecamatan`, `desa`, `Kan1`, `Kan2`, `Kan3`) VALUES
+(9, 7370, '32676', '38917', '38918', '38924', 10, 20, 30),
+(10, 7320, '12920', '13010', '13011', '13012', 50, 60, 70),
+(12, 123456, '1', '5138', '5244', '5250', 1, 2, 3),
+(13, 2345, '12920', '13681', '13707', '13709', 4, 5, 6),
+(14, 7890, '32676', '38917', '38918', '38924', 90, 90, 80),
+(15, 6543, '24993', '25120', '25140', '25145', 7, 8, 9),
+(16, 5432, '20802', '21265', '21417', '21435', 2, 3, 4),
+(17, 9876, '25405', '25429', '25433', '25441', 5, 4, 3),
+(18, 2097, '25405', '25533', '25586', '25589', 3, 4, 5),
+(19, 234567, '26141', '28573', '28688', '28692', 70, 80, 90);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_lokasi`
+--
+
+CREATE TABLE `tbl_lokasi` (
+  `id_lokasi` int(10) NOT NULL,
+  `nama_lokasi` varchar(50) NOT NULL,
+  `lat` float(10,6) NOT NULL,
+  `lng` float(10,6) NOT NULL,
+  `kandidat1` int(50) NOT NULL,
+  `kandidat2` int(50) NOT NULL,
+  `kandidat3` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_lokasi`
+--
+
+INSERT INTO `tbl_lokasi` (`id_lokasi`, `nama_lokasi`, `lat`, `lng`, `kandidat1`, `kandidat2`, `kandidat3`) VALUES
+(1, 'ciwalk', -6.894191, 107.605415, 10, 30, 60),
+(2, 'coblong', -6.898877, 107.608337, 60, 30, 10),
+(3, 'itb', -6.891480, 107.610657, 5, 5, 5),
+(4, 'kemayoran', -6.160372, 106.847336, 10, 20, 30);
 
 -- --------------------------------------------------------
 
@@ -50297,12 +50326,6 @@ ALTER TABLE `periode`
 -- Indexes for table `polling`
 --
 ALTER TABLE `polling`
-  ADD PRIMARY KEY (`id_polling`);
-
---
--- Indexes for table `tps`
---
-ALTER TABLE `tps`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -50319,7 +50342,7 @@ ALTER TABLE `wilayah`
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
-  MODIFY `id_kandidat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kandidat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `periode`
 --
@@ -50329,12 +50352,7 @@ ALTER TABLE `periode`
 -- AUTO_INCREMENT for table `polling`
 --
 ALTER TABLE `polling`
-  MODIFY `id_polling` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tps`
---
-ALTER TABLE `tps`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
