@@ -116,7 +116,7 @@ li a:hover {
 
 @foreach ($kandidat as $kandidat)
    <p style="padding-left: 650px">{{ $kandidat->nama }}</p>
-   <img style="padding-left: 650px" src="{{ asset('image/.$kandidat->img') }}" >
+   <img style="padding-left: 650px" src="{{ asset('image/'.$kandidat->img) }}" >
   @endforeach
 
 </body>
