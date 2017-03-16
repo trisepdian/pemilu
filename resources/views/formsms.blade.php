@@ -3,34 +3,18 @@
 	<link rel="stylesheet" type="text/css" href={!! asset('css/stylehome.css') !!}>
 	<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<!--
+	
 <style>	
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #fff;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: #57bc90;
-    text-align: center;
-    padding: 40px 80px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #77c9d4;
-	color: white;
+div.polaroid {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
 }
 </style>
-	-->
+	
 	
 	
 
@@ -115,8 +99,15 @@ li a:hover {
 <h2 style="padding-left: 650px">KANDIDAT</h2>
 
 @foreach ($kandidat as $kandidat)
-   <p style="padding-left: 650px">{{ $kandidat->nama }}</p>
-   <img style="padding-left: 650px" src="{{ asset('image/'.$kandidat->img) }}" >
+
+   <table border="0" style="padding-left: 650px">
+		<tr>
+			<td><div class="polaroid"><img height="200px" width="200px" src="{{ asset('image/'.$kandidat->img) }}" ></div></td>
+			<td> {{ $kandidat->nama }}</td>
+		</tr>
+
+   </table>
+
   @endforeach
 
 </body>
