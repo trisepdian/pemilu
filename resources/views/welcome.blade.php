@@ -1,10 +1,28 @@
 
+<html>
+
+	<link rel="stylesheet" type="text/css" href=('../../public/css/stylehome.css')>
+	<link rel="stylesheet" type="text/css" href='../../public/css/style1.css')>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	
+
+<body style='background-image:url("../../public/image/bg.jpg"); background-size:1000px 900px;  height:100%;'>
+<body style='background-color: #fff;'>
+
+<nav>    
+<ul>    
+	<li><a href="home.html">Home</a></li>
+	<li><a href="../../public/formsms">Presentase</a></li> 
+	<li><a href="welcome.blade.php">Maps</a></li>
+</ul> 
+</nav>
+
 <?php
   include "dbconfig.php";
 ?>
  
 <!DOCTYPE html>
-<html>
+
   <head>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqqRjJieG1mBpiXTsly3eyikRmlnLph7E "></script>
@@ -12,6 +30,8 @@
       #map-canvas {
         width: 500px;
         height: 500px;
+		padding-left: 700px;
+		left:64px;
       }
     </style> 
     <script>
@@ -65,10 +85,9 @@
    <body>
 
     <div id="map-canvas"></div>
-    <br>TEST
-      <div class="jumlah">
+    <br><h3><center><div class="jumlah">
         <?php include 'hitung.php';?>
-      </div>
+      </center></h3></div>
   </body>
 </html>
 
