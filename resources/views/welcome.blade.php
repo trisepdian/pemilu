@@ -13,14 +13,14 @@
 <ul>    
 	<li><a href="home.html">Home</a></li>
 	<li><a href="../../public/formsms">Presentase</a></li> 
-	<li><a href="welcome.blade.php">Maps</a></li>
+	<li><a href="welcome.blade.php">INFO</a></li>
 </ul> 
 </nav>
 
 <?php
   include "dbconfig.php";
 ?>
- 
+  
 <!DOCTYPE html>
 
   <head>
