@@ -12,7 +12,7 @@
 <nav>    
 <ul>    
 	<li><a href="home.html">Home</a></li>
-	<li><a href="../../public/formsms">Presentase</a></li> 
+	<li><a href="../../public/formsms">Maps</a></li> 
 	<li><a href="welcome.blade.php">INFO</a></li>
 </ul> 
 </nav>
