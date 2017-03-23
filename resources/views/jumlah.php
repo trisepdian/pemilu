@@ -1,11 +1,6 @@
-<!--<br>Quick Count :
-  hasil suara terbanyak :
-    hasil suara terendah :
--->
+ <?php
+    //include "dbconfig.php"; 
  
-    <?php
-    include "dbconfig.php";
-    //var_dump($test1);
     echo "Kandidat dengan nilai tertinggi adalah ";
 
       $sum1 = mysql_query("SELECT SUM(kandidat1) FROM tbl_lokasi");
@@ -37,4 +32,4 @@
       $pembulatan=number_format($persentase,2);
     echo "kandidat nomor $kandidatmax dengan perolehan suara sebesar $max dari total $jumlah suara. Persentase sebesar $pembulatan persen.";
  
-    ?>   
+ ?>   

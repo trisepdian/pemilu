@@ -1,29 +1,26 @@
-<html>  
-<head>
-	<!---<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>-->
-	<link rel="stylesheet" type="text/css" href={!! asset('css/stylehome.css') !!}>
-	<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
-<!--<body style='background-image:url({{asset("image/bg.jpg")}}); background-size:1350px 1000px;   height:150%;'>-->
+ <html>  
  
+<head>
+  <!---<link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>-->
+  <link rel="stylesheet" type="text/css" href={!! asset('css/stylehome.css') !!}>
+  <link rel="stylesheet" type="text/css" href={!! asset('css/style1.css') !!}>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqqRjJieG1mBpiXTsly3eyikRmlnLph7E "></script>
+<!--<body style='background-image:url({{asset("image/bg.jpg")}}); background-size:1350px 1000px;   height:150%;'>-->
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+           
+    $(document).ready(function(){
+    $('a').click(function(e){
+    e.preventDefault();
+    $("#body").load($(this).attr('href'));
+    });
+    });
+</script>
 </head>
 
 <body>
-<div id="container">
-<div id="header">
-	<nav>    
-    <ul>
-    <a href="{{ url('formsms') }}"><img src="../public/image/logo.png"></a>
-		<li><a href="{{ url('formsms') }}">FORM</a></li> 
-		<li><a href="{{ url('../resources/views/welcome.blade.php') }}" id="mapspage">MAPS</a></li>
-		<li><a href="{{ url('../resources/views/test.html') }}" id="testpage">INFO</a></li>
-	</ul> 
-	</nav>
-</div>
- 
-
-<div id="body">
- <div id="form-main" >
+<div id="form-main" >
   <div id="form-div">
     <form class="form" id="form1" method="post" action="{{URL::route('Send')}}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -147,23 +144,5 @@
     }
   });
   </script>
-  
-
-</div>
-
-
-
-
-<footer>
-<div id="footer">  
-			<br/><br/><br/>
-		    Institut Teknologi Bandung<br/>
-		    Jalan Ganesha no 10<br/>
-		    Bandung<br/><br/>
-		    <a href="www.facebook.com"><img src="../public/image/sosmedFb.png" width="30px" height="30px"></a>
-		    <a href="www.twitter.com"><img src="../public/image/sosmedTwit.png" width="30px" height="30px"></a>
-		    <a href="www.google.com"><img src="../public/image/sosmedGugel.png" width="30px" height="30px"></a>
-</div>​​​​​​​​​
-</footer>
-</body>
-</html> 
+ </body>
+</html>  

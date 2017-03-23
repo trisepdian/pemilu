@@ -1,15 +1,31 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-
-html{    
-background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
-
  
-  background-size: cover;
-  position: 100%;
- 
-	min-width: 100%;
-	min-height:100%;
-  }
+#container {
+   min-height:100%;
+   height:100%; 
+
+}
+#header { 
+     
+
+}
+#body {
+   padding:10px;
+} 
+
+#footer { 
+	background: url('../../public/image/footer.png') no-repeat; 
+	width:100%;
+	height:200px; 
+    text-align: right;
+    color:white;  
+    margin-bottom:  -200px;
+}​​​​​​​ 
+
+#footercontent {       
+	height:200px; 
+	width: 100px; 
+} 
 
 #feedback-page{
 	text-align:center;
@@ -31,16 +47,16 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 	float: left;
 	left: 50%;
 	position: absolute;
-   margin-top:10px;
+   	margin-top:10px;
 	margin-left: -600px;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
 }
 
 .feedback-input {
 	color:#3c3c3c;
 	font-family: Helvetica, Arial, sans-serif;
-  font-weight:500;
+ 	font-weight:500;
 	font-size: 18px;
 	border-radius: 0;
 	line-height: 22px;
@@ -71,7 +87,7 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 
 /* Icons ---------------------------------- */
 #name{
-	background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+	background-image: url('../../public/image/orang.png');
 	background-size: 30px 30px;
 	background-position: 11px 8px;
 	background-repeat: no-repeat;
@@ -81,7 +97,7 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 	background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
 	background-size: 30px 30px;
 	background-position: 8px 5px;
-  background-position: 11px 8px;
+  	background-position: 11px 8px;
 	background-repeat: no-repeat;
 }
 
@@ -95,7 +111,7 @@ background-image:url('{{asset("image/Pilkada-Serentak.jpg")}}');
 #email:focus{
 	background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
 	background-size: 30px 30px;
-  background-position: 11px 8px;
+  	background-position: 11px 8px;
 	background-repeat: no-repeat;
 }
 
@@ -141,8 +157,8 @@ input:focus, textarea:focus {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
-  margin-top:-4px;
-  font-weight:700;
+ 	 margin-top:-4px;
+  	font-weight:700;
 }
 
 #button-blue:hover{
@@ -179,4 +195,39 @@ input:focus, textarea:focus {
 		padding-left: 3%;
 		padding-right: 3%;
 	}
+}
+div.polaroid {
+	background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 25px;
+	border: 1px solid #ddd;
+    border-radius: 4px;
+	padding: 5px;
+}
+#polaroid {
+	background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 25px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px;
+}
+#tabs {
+    margin-left: 2%;
+    margin-right: 2%; 
+}
+#map-canvas {
+    float: left;
+    width: 70%;
+    height: 50%;  
+}
+#map-hasil { 
+    float: right;
+    width: 30%;
+    height: 50%;        
+    background-color: #fff; 
+}
+#map-jumlah{ 
+    width: 100%;
+    height: 50%;
 }
