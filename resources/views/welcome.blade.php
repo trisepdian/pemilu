@@ -1,5 +1,6 @@
 
 <html>
+<<<<<<< HEAD
 <head>
 <?php
   include "dbconfig.php";
@@ -7,6 +8,33 @@
 	<link rel="stylesheet" type="text/css" href="../../public/css/stylehome.css">
 	<link rel="stylesheet" type="text/css" href="../../public/css/style1.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+=======
+
+	<link rel="stylesheet" type="text/css" href=('../../public/css/stylehome.css')>
+	<link rel="stylesheet" type="text/css" href='../../public/css/style1.css')>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	
+
+<body style='background-image:url("../../public/image/bg.jpg"); background-size:1000px 900px;  height:100%;'>
+<body style='background-color: #fff;'>
+
+<nav>    
+<ul>    
+	<li><a href="home.html">Home</a></li>
+	<li><a href="../../public/formsms">Maps</a></li> 
+	<li><a href="welcome.blade.php">INFO</a></li>
+</ul> 
+</nav>
+
+<?php
+  include "dbconfig.php";
+?>
+  
+<!DOCTYPE html>
+
+  <head>
+
+>>>>>>> 63d836ec1cd68dc9ba8c13e976c82047b4ed5cf1
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqqRjJieG1mBpiXTsly3eyikRmlnLph7E "></script>
 <script>
     var marker;
