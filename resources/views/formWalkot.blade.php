@@ -46,6 +46,7 @@
 </style>
 
 <body>
+
 <div id="container">
 <div id="header">
 	<nav>    
@@ -54,7 +55,7 @@
 		<li><a href="#">HOME</a></li>
 		<li><a href="#">PEMILU</a>
 		<div class="dropdown-content">
-			<a href="{{ url('formWalkot')}}">WALIKOTA</a>
+			<a href="{{ url('formsmsWalkot') }}">WALIKOTA</a>
 			<a href="{{ url('formsms') }}">GUBERNUR</a>
 		</div>
 		</li> 
@@ -73,7 +74,7 @@
 <div id="body">
  <div id="form-main" >
   <div id="form-div">
-    <form class="form" id="form1" method="post" action="{{URL::route('Send')}}">
+    <form class="form" id="form1" method="post" action="{{URL::route('Sendwalkot')}}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <p class="name">
           <input type="text" name="tps" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="ID TPS" id="name" required/><br>
@@ -127,7 +128,7 @@
   </div>
   </div>
 
-<h2 style="padding-left: 650px">KANDIDAT PEMILU GUBERNUR</h2>
+<h2 style="padding-left: 650px">KANDIDAT WALIKOTA</h2>
   @foreach ($kandidat as $kandidat)
    <table border="0" style="padding-left: 650px">
     <tr>

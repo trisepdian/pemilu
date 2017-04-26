@@ -37,12 +37,22 @@
             bindInfoWindow(marker, map, infoWindow, info);
           }
  
-           <?php
+          <?php
           //  $query = mysql_query("select * from wilayah_jabar");
-          $query = mysql_query("select wilayah.*, SUM(polling.kan1) kan1, SUM(polling.kan2) kan2, SUM(polling.kan3) kan3 
-									FROM polling JOIN wilayah ON polling.desa = wilayah.wilayah_id 
+         $query = mysql_query("select wilayah.*, SUM(pollingwalkot.kan1) kan1, SUM(pollingwalkot.kan2) kan2, SUM(pollingwalkot.kan3) kan3 
+									FROM pollingwalkot JOIN wilayah ON pollingwalkot.desa = wilayah.wilayah_id 
 									WHERE wilayah.tingkat = 4
 									GROUP BY wilayah.wilayah_id");
+									
+									
+			/*$query = mysql_query("select wilayah_jabar.*, SUM(polling.kan1) kan1, SUM(polling.kan2) kan2, SUM(polling.kan3) kan3
+			 
+			FROM polling
+			JOIN wilayah_jabar ON polling.desa = wilayah_jabar.wilayah_id
+			WHERE wilayah_jabar.tingkat = 4
+			GROUP BY wilayah_jabar.wilayah_id");	*/				
+									
+		
 		  while ($data = mysql_fetch_array($query)) 
             {
               $lon = $data['lng'];

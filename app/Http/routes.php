@@ -24,4 +24,6 @@ Route::post('/indexPost', ['as'=>'postIndex' ,'uses'=>'OSMController@postAjax'])
 Route::get('/getChildWilayah/{id}', 'CRabbit@wilayahChild');
 
 
+Route::get('/formWalkot', 'CRabbit_Walkot@getFormView');
+Route::post('/sendwalkot', ['as'=>'Sendwalkot','uses'=>'CRabbit_Walkot@postForm']);
 

@@ -19,7 +19,7 @@ use App\Models\WilayahModel;
 use App\kandidat;
 use App\Http\Controllers\Controller;
 
-class CRabbit extends Controller
+class CRabbit_Walkot extends Controller
 {
 	protected $wilayah;
 
@@ -126,7 +126,7 @@ class CRabbit extends Controller
 //		$data['provinces'] = $this->wilayah->where('tingkat',1)->get();
 
 		//return view("formsms",$data);
-		return view("formsms", compact('provinces', 'kandidat'));
+		return view("formWalkot", compact('provinces', 'kandidat'));
 	}
 
 	function wilayahChild($id){
@@ -164,14 +164,6 @@ class CRabbit extends Controller
 		$kd1 = Input::get('kd1');
 		$kd2 = Input::get('kd2');
 		$kd3 = Input::get('kd3');
-		/*$lng_Prov = Input::get('lng_Prov'); 
-		$lat_Prov = Input::get('lat_Prov'); 
-		$lng_Kab = Input::get('lng_Kab');
-		$lat_Kab = Input::get('lat_Kab');
-		$lng_Kec = Input::get('lng_Kec');
-		$lat_Kec = Input::get('lat_Kec');
-		$lng_Desa = Input::get('lng_Desa');
-		$lat_Desa = Input::get('lat_Desa');*/
 
 	 //publish pesan ke antrian
 	  $nama = $tps;
@@ -192,8 +184,7 @@ class CRabbit extends Controller
 		//mysql_connect("localhost", "root", "");
 		//mysql_select_db("test");
 
-		//$query = DB::insert('insert into polling (ID_DataTPS, provinsi, kabupaten, kecamatan, desa, Kan1, Kan2, Kan3, lng_Prov, lat_Prov, lng_Kab, lat_Kab, lng_Kec, lat_Kec, lng_Desa, lat_Desa) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$tps, $provinsi, $kabupaten, $kecamatan, $desa, $kd1, $kd2, $kd3, $lng_Prov, $lat_Prov, $lng_Kab, $lat_Kab, $lng_Kec, $lat_Kec, $lng_Desa, $lat_Desa]);
-		$query = DB::insert('insert into polling (ID_DataTPS, provinsi, kabupaten, kecamatan, desa, Kan1, Kan2, Kan3) values (?, ?, ?, ?, ?, ?, ?, ?)', [$tps, $provinsi, $kabupaten, $kecamatan, $desa, $kd1, $kd2, $kd3]);
+		$query = DB::insert('insert into pollingwalkot (ID_DataTPS, provinsi, kabupaten, kecamatan, desa, Kan1, Kan2, Kan3) values (?, ?, ?, ?, ?, ?, ?, ?)', [$tps, $provinsi, $kabupaten, $kecamatan, $desa, $kd1, $kd2, $kd3]);
 		//$query="INSERT INTO message (tps, message) VALUES ('$_POST[tps]','$_POST[message]')";
 
 			if($query){
